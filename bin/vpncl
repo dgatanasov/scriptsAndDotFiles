@@ -1,0 +1,18 @@
+#!/bin/bash
+
+interface="CLWG"
+
+if [ "$1" = "up" ]; then
+	wg-quick up $interface
+elif [ "$1" = "down" ]; then
+	wg-quick down $interface	
+elif [ "$1" = "status" ]; then
+	if ip link show "$interface" &> /dev/null; then
+		echo "$interface is up"
+	else
+		echo "$interface is down"
+	fi
+else
+    echo "Invalid argument. Please specify 'up', 'down'  or 'status'."
+fi
+

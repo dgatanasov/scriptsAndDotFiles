@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$1" = "up" ]; then
+	screen -dmS cp VBoxHeadless -startvm cp
+    screen -dmS wrkr VBoxHeadless -startvm wrkr
+elif [ "$1" = "down" ]; then
+	screen -S wrkr -p 0 -X stuff "^C"
+    screen -S cp -p 0 -X stuff "^C"	
+else
+    echo "Invalid argument. Please specify 'up' or 'down'"
+fi
